@@ -35,7 +35,7 @@ const Hero = async () => {
             <CarouselItem className=" font-stix">
               <div className="artist-card">
                 <div className="artist-meta">
-                  <h3>Name: {artists.data[0].attributes.Name}</h3>
+                  <h3>Nombre: {artists.data[0].attributes.Name}</h3>
                 </div>
               </div>
             </CarouselItem>
