@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Inter, STIX_Two_Text, Work_Sans, Great_Vibes } from "next/font/google";
+import "./globals.scss";
+import Navigation from "./components/Navigation/Navigation";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const stix = STIX_Two_Text({ subsets: ["latin"], variable: "--font-stix" });
+const work = Work_Sans({ subsets: ["latin"], variable: "--font-work" });
+const gvibes = Great_Vibes({
+  subsets: ["latin"],
+  variable: "--font-gvibes",
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.variable} ${stix.variable} ${work.variable} ${gvibes.variable}`}
+      >
+        <header>
+          <Navigation></Navigation>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
