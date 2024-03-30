@@ -4,7 +4,7 @@ name: Run Build
 on:
   push:
     branches: 
-        - master
+        - main
 
 jobs:
   deploy:
