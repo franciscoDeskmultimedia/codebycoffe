@@ -6,8 +6,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import Image from "next/image";
+
 async function getData() {
-  const res = await fetch("https://strapi.codebycoffe.com/api/artists");
+  const res = await fetch(
+    "https://strapi.codebycoffe.com/api/artists?populate=*"
+  );
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
@@ -22,7 +26,7 @@ async function getData() {
 const Hero = async () => {
   const artists = await getData();
   console.log("here");
-  console.log(artists.data[0].attributes.Name);
+  console.log(artists.data[0].attributes.ProfilePic.data.attributes.url);
 
   return (
     <section className="hero font-work flex flex-wrap container bg-slate-200">
@@ -35,7 +39,17 @@ const Hero = async () => {
             <CarouselItem className=" font-stix">
               <div className="artist-card">
                 <div className="artist-meta">
-                  <h3>Nombre: {artists.data[0].attributes.Name}</h3>
+                  <h3>
+                    Nombre: {artists.data[0].attributes.Name}{" "}
+                    {artists.data[0].attributes.Lastname}
+                  </h3>
+
+                  <Image
+                    src={`https://strapi.codebycoffe.com${artists.data[0].attributes.ProfilePic.data.attributes.url}`}
+                    width={500}
+                    height={500}
+                    alt="Profile pic"
+                  ></Image>
                 </div>
               </div>
             </CarouselItem>
